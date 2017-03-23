@@ -1,9 +1,20 @@
 module Lib
-    ( someFunc
+    ( someFunc,
+      printNewName
     ) where
+
+import Demo(New(..))
+import qualified Demo
 
 someFunc :: IO ()
 someFunc = putStrLn "someFunc"
+
+printNewName :: IO()
+printNewName =
+  let
+    new = New {name="demo", age=1, size=10}
+  in
+    putStrLn $ (name new) ++ " --- " ++ (show . age $ new)
 
 sumi :: (Fractional a, Eq a) => a -> a -> a
 sumi = (+)
@@ -61,25 +72,3 @@ sumList3 listi = sumList2' listi 0
   where
     sumList2' [] acc    = acc
     sumList2' (h:t) acc = sumList2' t (h + acc)
-
-
--- data State = On | Off deriving (Show, Eq)
--- data New = New {name :: String, age  :: Int, size :: Int}
---
--- type ListInt = [Int]
---
--- demo = New {name="demo", age=1, size=2}
---
--- sumi a b
---   | a < 0 = b
---   | b < 0 = a
---   | otherwise = a + b
---
---
--- sumix (Just a) (Just b) =
---   a + b
---
--- sumiz a b = do
---   a' <- a
---   b' <- b
---   a + b
