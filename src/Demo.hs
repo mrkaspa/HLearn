@@ -10,6 +10,9 @@ module Demo
 data State = On | Off deriving (Show, Eq)
 data New = New {name :: String, age  :: Int, size :: Int}
 
+instance Show New where
+  show new = "User info: " ++ (name new) ++ " --- " ++ (show . age $ new)
+
 type ListInt = [Int]
 
 demo = New {name="demo", age=1, size=2}

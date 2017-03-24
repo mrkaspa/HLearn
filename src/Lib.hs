@@ -4,17 +4,18 @@ module Lib
     ) where
 
 import Demo(New(..))
-import qualified Demo
+-- import qualified Demo
 
 someFunc :: IO ()
 someFunc = putStrLn "someFunc"
 
-printNewName :: IO()
-printNewName =
+printNewName :: String -> IO ()
+printNewName uname=
   let
-    new = New {name="demo", age=1, size=10}
+    new = New {name=uname, age=1, size=10}
   in
-    putStrLn $ (name new) ++ " --- " ++ (show . age $ new)
+    -- putStrLn $ (name new) ++ " --- " ++ (show . age $ new)
+    print new
 
 sumi :: (Fractional a, Eq a) => a -> a -> a
 sumi = (+)
