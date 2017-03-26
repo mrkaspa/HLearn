@@ -1,9 +1,9 @@
-module Lib
-    ( someFunc,
-      printNewName
-    ) where
+module Lib (
+  someFunc
+  , printNewName
+  ) where
 
-import Demo(New(..))
+import           Demo (New (..))
 -- import qualified Demo
 
 someFunc :: IO ()
