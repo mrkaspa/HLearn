@@ -30,3 +30,14 @@ sumiz a b = do
   a' <- a
   b' <- b
   a + b
+
+fac :: (Eq a, Num a) => a -> a
+fac 0 = 1
+fac n = n * fac (n - 1)
+
+facT :: (Eq a, Num a) => a -> a
+facT 0 = 1
+facT n = facT' 1 n
+  where
+    facT' acc 0 = acc
+    facT' acc n = facT' (acc * n) (n - 1)

@@ -41,6 +41,8 @@ instance ToSeconds a => Eq (Timex a) where
 
 class Comparable a b where
   cmp :: a -> b -> Bool
+  diff :: a -> b -> Bool
+  diff a = not . cmp a
 
 instance (ToSeconds a, ToSeconds b) => Comparable (Timex a) (Timex b) where
   cmp (Timex a) (Timex b) =
