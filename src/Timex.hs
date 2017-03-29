@@ -18,7 +18,6 @@ parseSecInt a = s
   where
     Secs s = parseSec a
 
-
 class ToSeconds a where
   parseSec :: a -> Secs
 
@@ -30,7 +29,6 @@ instance ToSeconds Minutes where
 
 instance ToSeconds Hours where
   parseSec (Hours m) = Secs (m * 60 * 60)
-
 
 newtype ToSeconds a => Timex a = Timex a deriving Show
 
