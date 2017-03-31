@@ -1,5 +1,5 @@
-module Timex (
-  Secs(..)
+module Timex
+  ( Secs(..)
   , Minutes(..)
   , Hours(..)
   , Timex(..)
@@ -7,13 +7,21 @@ module Timex (
   , compareTimex
   ) where
 
-newtype Secs = Secs Int deriving Show
+newtype Secs =
+  Secs Int
+  deriving (Show)
 
-newtype Minutes = Minutes Int deriving Show
+newtype Minutes =
+  Minutes Int
+  deriving (Show)
 
-newtype Hours = Hours Int deriving Show
+newtype Hours =
+  Hours Int
+  deriving (Show)
 
-parseSecInt :: ToSeconds a => a -> Int
+parseSecInt
+  :: ToSeconds a
+  => a -> Int
 parseSecInt a = s
   where
     Secs s = parseSec a
@@ -30,11 +38,14 @@ instance ToSeconds Minutes where
 instance ToSeconds Hours where
   parseSec (Hours m) = Secs (m * 60 * 60)
 
-newtype ToSeconds a => Timex a = Timex a deriving Show
+newtype ToSeconds a =>
+        Timex a =
+  Timex a
+  deriving (Show)
 
-instance ToSeconds a => Eq (Timex a) where
-  (==) (Timex a) (Timex b) =
-    aSecs == bSecs
+instance ToSeconds a =>
+         Eq (Timex a) where
+  (==) (Timex a) (Timex b) = aSecs == bSecs
     where
       aSecs = parseSecInt a
       bSecs = parseSecInt b
@@ -44,14 +55,16 @@ class Comparable a b where
   diff :: a -> b -> Bool
   diff a = not . cmp a
 
-instance (ToSeconds a, ToSeconds b) => Comparable (Timex a) (Timex b) where
-  cmp (Timex a) (Timex b) =
-    aSecs == bSecs
+instance (ToSeconds a, ToSeconds b) =>
+         Comparable (Timex a) (Timex b) where
+  cmp (Timex a) (Timex b) = aSecs == bSecs
     where
       aSecs = parseSecInt a
       bSecs = parseSecInt b
 
-compareTimex :: (ToSeconds a, ToSeconds b) => a -> b -> Bool
+compareTimex
+  :: (ToSeconds a, ToSeconds b)
+  => a -> b -> Bool
 compareTimex a b = cmp (Timex a) (Timex b)
 
 instance Eq Secs where
