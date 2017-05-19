@@ -1,11 +1,9 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Web
-  ( wmain ) where
-
-import Web.Scotty
+  ( wmain
+  ) where
 
 import Data.Monoid (mconcat)
+import Web.Scotty
 
 wmain =
   scotty 3000 $ do
