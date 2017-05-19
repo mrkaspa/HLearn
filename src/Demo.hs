@@ -18,8 +18,15 @@ data New = New
   , size :: Int
   }
 
+data User = User
+  { name :: String
+  , age :: Int
+  , size :: Int
+  }
+
 instance Show New where
-  show new = "User info: " ++ (name new) ++ " --- " ++ (show . age $ new)
+  show new =
+    "User info: " ++ (name (new :: New)) ++ " --- " ++ (show $ age (new :: New))
 
 type ListInt = [Int]
 
