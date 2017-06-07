@@ -2,5 +2,5 @@ module Main where
 
 import Web
 
-main:: IO ()
+main :: IO ()
 main = wmain
