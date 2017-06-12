@@ -26,7 +26,7 @@ data User = User
 
 instance Show New where
   show new =
-    "User info: " ++ (name (new :: New)) ++ " --- " ++ (show $ age (new :: New))
+    "User info: " ++ name (new :: New) ++ " --- " ++ show (age (new :: New))
 
 type ListInt = [Int]
 
