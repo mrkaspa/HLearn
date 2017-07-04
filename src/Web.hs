@@ -29,7 +29,7 @@ renderTemplate =
 renderFromFile :: String -> IO TL.Text
 renderFromFile tpl = hastacheFile defaultConfig tplFile (mkStrContext context)
   where
-    tplFile = "templates" </> tpl
+    tplFile = "./templates" </> tpl
 
 template = "Hello, {{name}}!\n\nYou have {{unread}} unread messages."
 
