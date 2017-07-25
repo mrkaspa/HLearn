@@ -18,18 +18,15 @@ wmain =
     get "/demo/:word" $ do
       beam <- param "word"
       html $ mconcat ["<h1>Scotty, ", beam, " me up!</h1>"]
-    notFound $ do
-      templateText <- liftIO $ renderFromFile "demo.html"
-      html templateText
+    notFound $ renderFromFile "demo.html"
 
-renderTemplate :: IO TL.Text
-renderTemplate =
-  hastacheStr defaultConfig (encodeStr template) (mkStrContext context)
-
-renderFromFile :: String -> IO TL.Text
-renderFromFile tpl = hastacheFile defaultConfig tplFile (mkStrContext context)
+renderFromFile :: String -> ActionM ()
+renderFromFile tpl = do
+  templateText <- liftIO rendered
+  html templateText
   where
     tplFile = "./templates" </> tpl
+    rendered = hastacheFile defaultConfig tplFile (mkStrContext context)
 
 template = "Hello, {{name}}!\n\nYou have {{unread}} unread messages."
 
