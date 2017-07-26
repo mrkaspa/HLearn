@@ -42,7 +42,7 @@ sumix (Just a) (Just b) = a + b
 sumiz a b = do
   a' <- a
   b' <- b
-  a + b
+  return (a' + b')
 
 fac
   :: (Eq a, Num a)
