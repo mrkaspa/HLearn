@@ -18,7 +18,9 @@ data Puzzle =
 instance Show Puzzle where
   show (Puzzle _ discovered guessed) =
     (intersperse ' ' $ fmap renderPuzzleChar discovered) ++
-    " Guessed so far: " ++ guessed
+    " Guessed so far: " ++ (intersperse ' ' guessed)
+
+allowedChars = ['a' .. 'z']
 
 renderPuzzleChar :: Maybe Char -> Char
 renderPuzzleChar (Just c) = c
@@ -118,7 +120,9 @@ runGame puzzle = do
     putStr "Guess a letter: "
     guess <- getLine
     case guess of
-      [c] -> handleGuess puzzle c >>= runGame
+      [c]
+        | c `elem` allowedChars -> handleGuess puzzle c >>= runGame
+        | otherwise -> putStrLn "Your guess must be a valid char"
       _ -> putStrLn "Your guess must be a single char"
 
 mainName :: IO ()
