@@ -22,7 +22,7 @@ wmain =
 
 renderFromFile :: String -> ActionM ()
 renderFromFile tpl = do
-  templateText <- liftIO rendered
+  templateText <- rendered
   html templateText
   where
     tplFile = "./templates" </> tpl
