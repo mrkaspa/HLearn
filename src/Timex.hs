@@ -19,9 +19,7 @@ newtype Hours =
   Hours Int
   deriving (Show)
 
-parseSecInt
-  :: ToSeconds a
-  => a -> Int
+parseSecInt :: ToSeconds a => a -> Int
 parseSecInt a = s
   where
     Secs s = parseSec a
@@ -43,8 +41,7 @@ newtype ToSeconds a =>
   Timex a
   deriving (Show)
 
-instance ToSeconds a =>
-         Eq (Timex a) where
+instance ToSeconds a => Eq (Timex a) where
   (==) (Timex a) (Timex b) = aSecs == bSecs
     where
       aSecs = parseSecInt a
@@ -55,16 +52,13 @@ class Comparable a b where
   diff :: a -> b -> Bool
   diff a = not . cmp a
 
-instance (ToSeconds a, ToSeconds b) =>
-         Comparable (Timex a) (Timex b) where
+instance (ToSeconds a, ToSeconds b) => Comparable (Timex a) (Timex b) where
   cmp (Timex a) (Timex b) = aSecs == bSecs
     where
       aSecs = parseSecInt a
       bSecs = parseSecInt b
 
-compareTimex
-  :: (ToSeconds a, ToSeconds b)
-  => a -> b -> Bool
+compareTimex :: (ToSeconds a, ToSeconds b) => a -> b -> Bool
 compareTimex a b = cmp (Timex a) (Timex b)
 
 instance Eq Secs where
