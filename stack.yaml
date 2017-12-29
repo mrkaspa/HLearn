@@ -7,4 +7,5 @@ extra-deps:
 - bifunctors-5.2.1
 - http-client-0.4.31.2
 - http-client-tls-0.2.4.1
+- errors-2.2.2
 resolver: lts-8.4
