@@ -37,6 +37,7 @@ library
         MultiParamTypeClasses
         DuplicateRecordFields
         OverloadedStrings
+        DatatypeContexts
 
 executable Learn-exe
     main-is: Main.hs
