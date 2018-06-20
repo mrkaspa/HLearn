@@ -48,11 +48,15 @@ sumiz a b = do
   b' <- b
   return (a' + b')
 
-fac :: (Eq a, Num a) => a -> a
+fac
+  :: (Eq a, Num a)
+  => a -> a
 fac 0 = 1
 fac n = n * fac (n - 1)
 
-facT :: (Eq a, Num a) => a -> a
+facT
+  :: (Eq a, Num a)
+  => a -> a
 facT 0 = 1
 facT n = facT' 1 n
   where
@@ -64,14 +68,16 @@ data Optional a
   | Only a
   deriving (Eq, Show)
 
-instance Monoid a => Monoid (Optional a) where
+instance Monoid a =>
+         Monoid (Optional a) where
   mempty = Nada
   mappend (Only a) (Only b) = Only (mappend a b)
   mappend (Only a) Nada = Only a
   mappend Nada (Only a) = Only a
   mappend Nada Nada = Nada
 
-instance Arbitrary a => Arbitrary (Optional a) where
+instance Arbitrary a =>
+         Arbitrary (Optional a) where
   arbitrary = frequency [(1, return Nada), (1, fmap Only arbitrary)]
 
 type Verb = String
